@@ -44,9 +44,9 @@ Every change must keep it:
 | Short name (UI) | NEX Express Logistics |
 | Tagline | NEX EL |
 | Primary email | info@nexexpresslogistics.com |
-| Domain | karimashippingenterprisesinc.com |
+| Domain | nexexpresslogistics.com |
 | Coverage | Worldwide |
-| Admin console URL | https://karimashippingenterprisesinc.com/admin/ (same Node app, same domain) |
+| Admin console URL | https://nexexpresslogistics.com/admin/ (same Node app, same domain) |
 | Tracking ID prefix | `NEL` — full ID is **exactly 8 characters**: `NEL` + 5 characters (e.g. `NEL7K2M9`) |
 | Other references | `NEL-TKT-`, `NEL-INV-`, `NEL-SL-` + 6 digits (BRAND_GUIDE §7) |
 | Phone / WhatsApp / HQ address | **TBD — ask the owner. Never invent real-looking numbers or addresses.** |
@@ -62,7 +62,7 @@ These values live in `src/config/brand.ts`. If a fact is not in this table or in
 - **Icons:** lucide-react. **Barcodes:** jsbarcode. **PDFs:** jspdf + html2canvas.
 - **Backend:** Express 5 (`server/`), SQLite via Node's built-in `node:sqlite` (**requires Node ≥ 22.5**),
   express-session auth, helmet, rate limiting.
-- **Admin:** served ONLY at the path **`/admin/`** on the main domain (`https://karimashippingenterprisesinc.com/admin/`), same app and API (`isAdminPath()` in `App.tsx` matches the pathname exactly against `ADMIN_PATH` from `src/config/brand.ts`; the server sends `index.html` there with `X-Robots-Tag: noindex`). `/admin` (no slash) gets a 301 to `/admin/`. The `#/admin` hash route must never open it in production; it works on localhost only.
+- **Admin:** served ONLY at the path **`/admin/`** on the main domain (`https://nexexpresslogistics.com/admin/`), same app and API (`isAdminPath()` in `App.tsx` matches the pathname exactly against `ADMIN_PATH` from `src/config/brand.ts`; the server sends `index.html` there with `X-Robots-Tag: noindex`). `/admin` (no slash) gets a 301 to `/admin/`. The `#/admin` hash route must never open it in production; it works on localhost only.
 - **Static assets folder is `Public/` (capital P)** — `vite.config.ts` sets `publicDir: 'Public'`. Do not rename it;
   Hostinger's Linux build is case-sensitive.
 

@@ -5,20 +5,20 @@
 > maintains and improves this existing codebase. Nothing here is built from scratch; every task modifies the working system
 > in place and must leave it working. See `CLAUDE.md §0`.
 >
-> **2026-11-03: NEX Express Logistics launch.** The site launches as **NEX Express Logistics** on **karimashippingenterprisesinc.com**, with the admin console
-> at **`https://karimashippingenterprisesinc.com/admin/`** (a path on the same domain and app, not a subdomain). The task is archived, with the remaining
+> **2026-11-03: NEX Express Logistics launch.** The site launches as **NEX Express Logistics** on **nexexpresslogistics.com**, with the admin console
+> at **`https://nexexpresslogistics.com/admin/`** (a path on the same domain and app, not a subdomain). The task is archived, with the remaining
 > prompts, in `PROMPTS.md`. It is a new site: new GitHub repo with fresh history, new Hostinger Node.js app, new empty
 > database, new admin credentials.
 
 **Working method:** treat this like a client engagement on a live system. Before each task, read the affected files; after each task, run `npm run build`, test the flow you touched, commit with a clear message, and log it below.
 
-**Owner:** NEX Express Logistics · **Repo:** new NEX Express Logistics GitHub repo, fresh history (L.9) · **Target:** karimashippingenterprisesinc.com on Hostinger (new Node.js app)
+**Owner:** NEX Express Logistics · **Repo:** new NEX Express Logistics GitHub repo, fresh history (L.9) · **Target:** nexexpresslogistics.com on Hostinger (new Node.js app)
 **Status legend:** `[ ]` to do · `[~]` in progress · `[x]` done · `[!]` blocked (see Needs owner)
 
 ---
 
 ## Phase L — NEX Express Logistics launch (current phase; PROMPTS.md)
-**Given by the owner (2026-11-05):** name and legal name **NEX Express Logistics** · tagline **NEX EL** · **karimashippingenterprisesinc.com**
+**Given by the owner (2026-11-05):** name and legal name **NEX Express Logistics** · tagline **NEX EL** · **nexexpresslogistics.com**
 · **info@nexexpresslogistics.com** (its own domain, not the website's) · admin **/admin/** · logo `images/NEX Express Logistics Logo.png` · tracking ID **`NEL` + 5 characters = 8**
 (e.g. `NEL7K2M9`, piece labels `NEL7K2M9-01`) · references `NEL-TKT-`, `NEL-INV-`, `NEL-SL-` + 6 digits (quotes keep `QR-YYYY-#####`)
 · live chat on with this site's own Smartsupp key · palette, fonts, layout and photos unchanged. Default DB file `nexexpresslogistics.db`.
@@ -132,7 +132,7 @@ Same setup (production build, compression on, Lighthouse 12.8.2). Main JS **707 
 - [x] 6.1 Brand sweep = zero. *Re-run 2026-10-12 for the NEX Express Logistics launch over source, docs, `dist/` and `dist-server/`.*
 - [x] 6.2 Functional test: create shipment in admin → track it publicly → documents download → quote flow → contact form. *Re-run end to end for the launch (L.7).*
 - [!] 6.3 Cross-browser: Chrome, Safari (iOS), Firefox, Samsung Internet; low-end Android test. *Needs the owner's devices (#43). Desktop Chrome checked at 375, 768 and 1440.*
-- [x] 6.4 SEO: per-page titles/descriptions, `robots.txt`, `sitemap.xml`, OG image, structured data (Organization). *`server/seo.ts`: one public robots.txt/sitemap on `https://karimashippingenterprisesinc.com` that never lists the admin path, plus `X-Robots-Tag: noindex, nofollow` on `/admin/`. Hash routing limits indexing to `/` (#44).* **Before announcing the launch:** the OG image URL is absolute (`https://karimashippingenterprisesinc.com/brand/og-image.jpg`) and only works once the domain serves the site; check it with DEPLOYMENT §7.
+- [x] 6.4 SEO: per-page titles/descriptions, `robots.txt`, `sitemap.xml`, OG image, structured data (Organization). *`server/seo.ts`: one public robots.txt/sitemap on `https://nexexpresslogistics.com` that never lists the admin path, plus `X-Robots-Tag: noindex, nofollow` on `/admin/`. Hash routing limits indexing to `/` (#44).* **Before announcing the launch:** the OG image URL is absolute (`https://nexexpresslogistics.com/brand/og-image.jpg`) and only works once the domain serves the site; check it with DEPLOYMENT §7.
 - [x] 6.5 Accessibility: keyboard nav, focus states, alt text, contrast, reduced motion. *axe-core (WCAG 2.1 AA) on 11 public pages at 375 and 1440: 0 violations. Not audited: the admin console and later form steps (#45).*
 - [ ] 6.6 Take "after" screenshots → `screens/after/`.
 - [x] 6.7 **Remove ALL demo data before launch (launch blocker).** No mock shipments, demo seed, fake timeline or demo map dot in the code; `SEED_DEMO_DATA` no longer does anything; the production database starts empty. `grep -rn "DEMO DATA" src server` returns nothing.
@@ -141,7 +141,7 @@ Same setup (production build, compression on, Lighthouse 12.8.2). Main JS **707 
 - [x] 7.0 New, empty GitHub repo for NEX Express Logistics; push a **fresh-history** commit (orphan branch → `main`). `git remote -v` must show only the NEX Express Logistics repo.
 - [ ] 7.1 **New** Hostinger Node.js app connected to the NEX Express Logistics repo (`main`); Node 22.x (≥ 22.5); install `npm install` (postinstall builds), start `npm start`.
 - [ ] 7.2 Env vars: `NODE_ENV=production`, new `ADMIN_PASSWORD_HASH` + `SESSION_SECRET` (L.8), `DB_PATH=/home/<user>/nexexpresslogistics-data/nexexpresslogistics.db`, `UPLOADS_DIR=/home/<user>/nexexpresslogistics-data/uploads` (outside the deploy folder), `SEED_DEMO_DATA` unset.
-- [ ] 7.3 Domain: `karimashippingenterprisesinc.com` on the app, `www.` redirecting to the root (one host keeps the admin session working); SSL on both, force HTTPS. **No admin subdomain**: the admin is `https://karimashippingenterprisesinc.com/admin/`.
+- [ ] 7.3 Domain: `nexexpresslogistics.com` on the app, `www.` redirecting to the root (one host keeps the admin session working); SSL on both, force HTTPS. **No admin subdomain**: the admin is `https://nexexpresslogistics.com/admin/`.
 - [ ] 7.4 Email: info@nexexpresslogistics.com mailbox + SPF/DKIM/DMARC.
 - [ ] 7.5 Post-deploy smoke test (DEPLOYMENT §7): logo/name/tab icon, OG preview, `/admin/` login with the new password, `/#/admin` shows Home and `/admins` the 404 page, robots.txt doesn't list the admin path, `/api/diag/storage` shows `nexexpresslogistics-data`, create → track a NEL shipment, data survives a redeploy, compression + `/assets` cache headers. Then set up the daily backup of `nexexpresslogistics.db` **and** the `UPLOADS_DIR` folder.
 
@@ -191,7 +191,7 @@ Only open items are listed. Numbers are kept stable because code and docs refer 
 | 47 | **Found in QA, not fixed:** (a) the dangerous-goods **Emergency Response Contact** field is not saved; (b) the admin "Book Consignment" quick form is U.S.-shaped (required "State", NY/LA placeholders, lbs only); (c) the pet presets pre-fill a fictional "(212) 555-0199"; (e) `POST /api/quotes` accepts a client-chosen quote `id`, and `POST /api/documents/generate` (public, rate-limited) returns 500 for a bad body and accepts an unknown `docType`. | 6.2 |
 | 50 | At 375 px the footer tagline may wrap onto two lines (no overflow). | 3.1 |
 | 52 | At 375 px the Quote result page (`#/quote/<id>`) scrolls sideways by about 40 px (`.quote-main-col` / `.pending-rate-waiting-card`). | 6.2 |
-| 55 | **Launch inputs still needed:** (b) the Hostinger plan/app and access to the karimashippingenterprisesinc.com DNS; (c) the info@nexexpresslogistics.com mailbox (7.4); (d) phone / WhatsApp / HQ address / social links (#2, #3, #9); (e) lawyer review under the NEX Express Logistics name and jurisdiction (#11, #37); (f) confirm the payment/proof copy in CONTENT §6.8 and the 404 page copy in CONTENT §1.1a. | L, 7 |
+| 55 | **Launch inputs still needed:** (b) the Hostinger plan/app and access to the nexexpresslogistics.com DNS; (c) the info@nexexpresslogistics.com mailbox (7.4); (d) phone / WhatsApp / HQ address / social links (#2, #3, #9); (e) lawyer review under the NEX Express Logistics name and jurisdiction (#11, #37); (f) confirm the payment/proof copy in CONTENT §6.8 and the 404 page copy in CONTENT §1.1a. | L, 7 |
 | 57 | The Document Center preview closes on a backdrop click but not with Escape. The ETA engine gives an Express Tokyo → São Paulo shipment next-day delivery: confirm the transit rules. | 3.12 |
 | 59 | **Code clean-up after launch (owner to decide):** (a) the unused `ADMIN_PROXY_TARGET` proxy mode in `server/index.ts`, `server/db.ts` and `server/seo.ts` (DEPLOYMENT §4: leave it unset); (b) remove `/api/diag/storage` once persistence is confirmed on Hostinger; (c) `QuoteRequestsView.tsx` still gives quote ID `QR-2026-00124` a "SAMPLE" row style (styling only, no data). | 7, after launch |
 | 60 | **Logo source is a raster.** The artwork is transparent, but its tagline line is about 2 px tall at header size and the 16 px favicon is busy. A vector original would give a crisper favicon. | L.2 |
@@ -202,7 +202,7 @@ Only open items are listed. Numbers are kept stable because code and docs refer 
 |---|---|
 | 2026-11-03 | **NEX Express Logistics launch (owner):** new name, legal name, domain, email, logo, `NEL` prefix and admin address; tagline "NEX EL"; palette, fonts, layout, photos and features unchanged. |
 | 2026-11-05 | **Rebrand (owner):** name, logo, domain and tagline only. Follow-up the same day: email info@nexexpresslogistics.com, ID prefix `NEL` (5 random characters, total stays 8), legal name NEX Express Logistics, this site's own Smartsupp key. The Home headline "Fast • Safe • Reliable" and all other copy stay as they were. |
-| 2026-11-03 | **Admin console is at `/admin/` (owner's choice):** `https://karimashippingenterprisesinc.com/admin/` on the same host and app. `isAdminPath()` matches the path exactly; `/admin` gets a 301; `#/admin` works only on localhost. The server serves `index.html` there with `X-Robots-Tag: noindex, nofollow`; robots.txt does **not** list the path. It is a commonly probed address, so it relies on a strong password and the login rate limit. |
+| 2026-11-03 | **Admin console is at `/admin/` (owner's choice):** `https://nexexpresslogistics.com/admin/` on the same host and app. `isAdminPath()` matches the path exactly; `/admin` gets a 301; `#/admin` works only on localhost. The server serves `index.html` there with `X-Robots-Tag: noindex, nofollow`; robots.txt does **not** list the path. It is a commonly probed address, so it relies on a strong password and the login rate limit. |
 | 2026-11-03 | Unknown paths (incl. `/admins`, `/admin/x`, `/admin-x`) get status 404 and the "Page not found" page (CONTENT §1.1a). |
 | 2026-11-03 | **Live chat (owner):** Smartsupp with this site's own account key (`SMARTSUPP_KEY`), public site only; named in the privacy policy. |
 | 2026-10-12 | Admin login shows the white logo (transparent PNG) on the dark photo above the card; Settings shows the admin console address read-only (owner). |
@@ -232,6 +232,7 @@ Only open items are listed. Numbers are kept stable because code and docs refer 
 ## Change log
 | Date | Task | Note |
 |---|---|---|
+| 2026-11-06 | Domain fix | Owner confirmed the domain is `nexexpresslogistics.com`; the previous company's domain was still in `brand.ts` (printed on every PDF), `index.html` SEO tags and the docs. Replaced everywhere. |
 | 2026-11-05 | Rebrand to NEX Express Logistics | Name, tagline, domain, email and default DB file swept; logos, icons and OG image rebuilt with `optimize-images.mjs --brand` (`GLOBE`, `PARCEL`, `ORBIT`, `MARK` re-measured; web logo 359×104). Then the owner's follow-up: email, `NEL` IDs and references (examples and tests updated), Smartsupp key; pushed with fresh history to the new repo. |
 | 2026-11-03 | Owner decisions | Email, legal name and `NEL` prefix confirmed. Live chat off, then back on the same day with this site's own Smartsupp key; privacy policy names it (`legalDocs.ts`, CONTENT §13). |
 | 2026-11-03 | **NEX Express Logistics launch** | See below. |

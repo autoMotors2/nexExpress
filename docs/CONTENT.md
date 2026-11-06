@@ -18,7 +18,7 @@ ship a page with a visible `{{…}}`. Hide the element if the value is missing.
 | `{{COMPANY}}` | NEX Express Logistics |
 | `{{LEGAL_NAME}}` | NEX Express Logistics |
 | `{{EMAIL}}` | info@nexexpresslogistics.com |
-| `{{DOMAIN}}` | karimashippingenterprisesinc.com |
+| `{{DOMAIN}}` | nexexpresslogistics.com |
 | `{{PHONE}}` / `{{WHATSAPP}}` | TBD (owner) |
 | `{{HQ_ADDRESS}}` | TBD (owner) |
 | `{{YEAR_FOUNDED}}` | TBD (owner). If unknown, remove the "years" stat |

@@ -1,7 +1,7 @@
 # NEX Express Logistics: Launch Task Archive and Prompt Pack
 
 **The job (owner's request, 2026-11-05):** launch this working logistics platform as a new site,
-**NEX Express Logistics**, on **karimashippingenterprisesinc.com** (Hostinger Node.js app). Only the site name, logo, tagline, domain,
+**NEX Express Logistics**, on **nexexpresslogistics.com** (Hostinger Node.js app). Only the site name, logo, tagline, domain,
 email, ID prefix and live chat key change. **These stay the same:** colour palette, fonts, layout, every photo, every page, every feature and the admin path.
 
 > **Fresh site, fresh identity.** This site gets a **new GitHub repo**, a **new Hostinger Node.js app**, a **new empty
@@ -12,7 +12,7 @@ email, ID prefix and live chat key change. **These stay the same:** colour palet
 
 ## The request, as given
 
-> Transfer the content of the current site to the new domain, karimashippingenterprisesinc.com. The site name will be
+> Transfer the content of the current site to the new domain, nexexpresslogistics.com. The site name will be
 > NEX Express Logistics, with NEX EL as the tagline. The new logo is `images/NEX Express Logistics Logo.png`.
 > No code changes, just change the logo and name.
 
@@ -25,9 +25,9 @@ Home headline stays "Fast • Safe • Reliable"; this site's own Smartsupp key 
 |---|---|---|
 | Name / legal name / short name | **NEX Express Logistics** | Owner |
 | Tagline | **NEX EL** | Owner |
-| Domain | **karimashippingenterprisesinc.com** (`www.` redirects to the root) | Owner |
+| Domain | **nexexpresslogistics.com** (`www.` redirects to the root) | Owner |
 | Email | **info@nexexpresslogistics.com** (a different domain from the website) | Owner |
-| Admin console | **https://karimashippingenterprisesinc.com/admin/** · locally `http://localhost:3000/admin/` and `http://localhost:3000/#/admin` | Owner |
+| Admin console | **https://nexexpresslogistics.com/admin/** · locally `http://localhost:3000/admin/` and `http://localhost:3000/#/admin` | Owner |
 | Admin console name | **NEX Express Logistics Operations Console** (from `COMPANY_SHORT`) | Derived |
 | Tracking ID | **`NEL` + 5 characters = 8 total**, e.g. `NEL7K2M9`; piece labels `NEL7K2M9-01` | Owner |
 | Reference prefixes | `NEL-TKT-######`, `NEL-INV-######`, `NEL-SL-######`; quotes keep `QR-YYYY-#####` | Owner |
@@ -67,15 +67,15 @@ Set a new admin password and session secret for NEX Express Logistics. Configura
 STOP.
 ```
 
-### Prompt 2: New GitHub repo and deploy to karimashippingenterprisesinc.com on Hostinger (mostly me in hPanel)
+### Prompt 2: New GitHub repo and deploy to nexexpresslogistics.com on Hostinger (mostly me in hPanel)
 ```
 Prepare the deploy per docs/DEPLOYMENT.md. Don't deploy anything yourself; give me exact steps. This is a NEW site with a NEW repo, app and database.
 
 1. GitHub, fresh history: check .gitignore excludes node_modules, dist, dist-server, data, .env, then give me the commands: `git checkout --orphan wpe-main`, `git add -A`, commit "NEX Express Logistics: initial release", `git branch -M main`, `git remote remove origin`, `git remote add origin <MY NEW EMPTY REPO URL>`, `git push -u origin main`. Ask me for the repo URL; don't guess it. Before pushing, confirm `git remote -v` shows ONLY the new repo and the new main has exactly one commit.
 2. hPanel → new Node.js web app: connect the new repo, branch main, Node 22.x (≥ 22.5), install `npm install` (postinstall builds; don't build twice), start `npm start` (entry dist-server/server/index.js).
 3. Environment variables: NODE_ENV=production, PORT only if hPanel requires it, ADMIN_PASSWORD_HASH and SESSION_SECRET (from Prompt 1), DB_PATH=/home/<user>/nexexpresslogistics-data/nexexpresslogistics.db and UPLOADS_DIR=/home/<user>/nexexpresslogistics-data/uploads (a folder OUTSIDE the deploy directory; create it first), SEED_DEMO_DATA unset. The database starts empty.
-4. Domain: karimashippingenterprisesinc.com on this app, www redirecting to the root (one host, so the admin session cookie works), SSL on both, force HTTPS; DNS records if the domain is registered elsewhere.
-5. Smoke test on the live domain (DEPLOYMENT §7): new logo, name and tab icon; the share preview uses karimashippingenterprisesinc.com and the OG image loads; https://karimashippingenterprisesinc.com/admin/ shows the login and works with the new password; /admin redirects to /admin/; /#/admin shows Home; /admins shows the 404 page; robots.txt and sitemap.xml use karimashippingenterprisesinc.com and don't mention the admin path; log in, then open /api/diag/storage and confirm the data folder; create → track a NEL shipment; redeploy once and confirm the shipment is still there; response headers show compression and the /assets cache rule.
+4. Domain: nexexpresslogistics.com on this app, www redirecting to the root (one host, so the admin session cookie works), SSL on both, force HTTPS; DNS records if the domain is registered elsewhere.
+5. Smoke test on the live domain (DEPLOYMENT §7): new logo, name and tab icon; the share preview uses nexexpresslogistics.com and the OG image loads; https://nexexpresslogistics.com/admin/ shows the login and works with the new password; /admin redirects to /admin/; /#/admin shows Home; /admins shows the 404 page; robots.txt and sitemap.xml use nexexpresslogistics.com and don't mention the admin path; log in, then open /api/diag/storage and confirm the data folder; create → track a NEL shipment; redeploy once and confirm the shipment is still there; response headers show compression and the /assets cache rule.
 6. Email: create the info@nexexpresslogistics.com mailbox and add SPF/DKIM/DMARC.
 STOP and wait for my results, then tick the launch tasks in the tracker and commit "docs: NEX Express Logistics live".
 ```

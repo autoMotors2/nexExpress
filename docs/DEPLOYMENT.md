@@ -10,7 +10,7 @@
 > or database.
 
 The app is **one Node.js process** on **one domain**: Express serves the API (`/api/*`), the built React site (`dist/`) and
-the admin console at **`https://karimashippingenterprisesinc.com/admin/`**. It stores data in a **SQLite file** plus an
+the admin console at **`https://nexexpresslogistics.com/admin/`**. It stores data in a **SQLite file** plus an
 **uploads folder**. That shapes everything below.
 
 ---
@@ -87,7 +87,7 @@ screenshots (`proofs/`, private, admin-only). Both subfolders are created on sta
 The startup log (hPanel → app logs) prints the database path and the uploads path in use.
 
 **Check persistence before launch:** `GET /api/diag/storage` is a temporary, admin-only endpoint. Log in at
-`/admin/` first, then open `https://karimashippingenterprisesinc.com/api/diag/storage` in the same browser: `dataDir` must be
+`/admin/` first, then open `https://nexexpresslogistics.com/api/diag/storage` in the same browser: `dataDir` must be
 the `nexexpresslogistics-data` folder. Redeploy and open it again; if `markerFirstSeen` stays the same, storage persists. **After
 confirming, remove this endpoint.**
 
@@ -95,16 +95,16 @@ confirming, remove this endpoint.**
 
 | Host | Points to | Purpose |
 |---|---|---|
-| `karimashippingenterprisesinc.com` | The NEX Express Logistics Node app | Public site **and** admin console (`/admin/`) |
-| `www.karimashippingenterprisesinc.com` | Redirect (301) → `https://karimashippingenterprisesinc.com` | One host only |
+| `nexexpresslogistics.com` | The NEX Express Logistics Node app | Public site **and** admin console (`/admin/`) |
+| `www.nexexpresslogistics.com` | Redirect (301) → `https://nexexpresslogistics.com` | One host only |
 
-- **Admin console: `https://karimashippingenterprisesinc.com/admin/`** on the same host and Node app. There is **no admin
+- **Admin console: `https://nexexpresslogistics.com/admin/`** on the same host and Node app. There is **no admin
   subdomain** (no `private.` host, no second app). `isAdminPath()` in `src/App.tsx` matches the pathname exactly against
   `ADMIN_PATH` from `src/config/brand.ts` (case and trailing slash ignored; `/admin/x` and `/admins` don't
   match). The server answers `/admin` with a 301 to `/admin/` and serves `index.html` there with
   `Cache-Control: no-cache` and `X-Robots-Tag: noindex, nofollow`.
 - Keep **one** host: `www.` must redirect to the apex, or the host-only admin session cookie splits in two and the
-  canonical/OG URLs (which use `https://karimashippingenterprisesinc.com`) stop matching.
+  canonical/OG URLs (which use `https://nexexpresslogistics.com`) stop matching.
 - On the live site `/#/admin` falls back to Home; `/admins`, `/admin/x` and any other unknown path get status 404 and the
   "Page not found" page. `/admin/` is a commonly probed address, so use a long, unique admin password. It is never listed in `robots.txt` or `sitemap.xml` (listing it would advertise it).
 - If the domain is registered elsewhere, point its DNS at Hostinger (A/CNAME records from hPanel).
@@ -122,17 +122,17 @@ confirming, remove this endpoint.**
 - [ ] **No demo data (tracker 6.7).** The production database starts empty; `grep -rn "DEMO DATA" src server` returns
   nothing. Tracking any made-up ID (e.g. `NEL7K2M9`) on the live site says "not found".
 - [ ] Home loads over HTTPS with the **NEX Express Logistics logo, name and tab icon**, and no console errors.
-- [ ] `https://www.karimashippingenterprisesinc.com/` redirects to `https://karimashippingenterprisesinc.com/`; `http://` redirects to `https://`.
+- [ ] `https://www.nexexpresslogistics.com/` redirects to `https://nexexpresslogistics.com/`; `http://` redirects to `https://`.
 - [ ] `/api/health` returns `ok` with `"service": "NEX Express Logistics API"`.
-- [ ] **`https://karimashippingenterprisesinc.com/admin/`** shows the admin login, and the new password works; logout/login works.
-- [ ] `https://karimashippingenterprisesinc.com/admin` (no slash) redirects 301 to `/admin/`.
+- [ ] **`https://nexexpresslogistics.com/admin/`** shows the admin login, and the new password works; logout/login works.
+- [ ] `https://nexexpresslogistics.com/admin` (no slash) redirects 301 to `/admin/`.
 - [ ] `/#/admin` shows **Home**; `/admins` and `/admin/x` show the **404 page**. None of them opens the admin.
 - [ ] Response headers on `/admin/` include `X-Robots-Tag: noindex, nofollow`.
-- [ ] `robots.txt` and `sitemap.xml` use `https://karimashippingenterprisesinc.com` and **don't mention `admin`**.
+- [ ] `robots.txt` and `sitemap.xml` use `https://nexexpresslogistics.com` and **don't mention `admin`**.
 - [ ] Logged in, `/api/diag/storage` shows `dataDir` inside `nexexpresslogistics-data`; the startup log shows `UPLOADS_DIR` there too.
 - [ ] Create a shipment in admin → it gets an **8-character ID: `NEL` + 5 characters** (e.g. `NEL7K2M9`) → the public
   Track page finds it, also typed in lower case with spaces and as a piece label (`…-01`).
-- [ ] Download the waybill, BOL and invoice PDFs: NEX Express Logistics logo, name, `info@nexexpresslogistics.com`, `karimashippingenterprisesinc.com` and
+- [ ] Download the waybill, BOL and invoice PDFs: NEX Express Logistics logo, name, `info@nexexpresslogistics.com`, `nexexpresslogistics.com` and
   `NEL-INV-` references only.
 - [ ] Quote request → appears in admin → publish → the public quote link opens.
 - [ ] Contact and callback forms submit, show a `NEL-TKT-` reference and appear in the admin Messages inbox.
@@ -140,7 +140,7 @@ confirming, remove this endpoint.**
 - [ ] Redeploy once, then confirm the shipment and its photo still exist (persistence).
 - [ ] Response headers: `Content-Encoding: gzip` (or `br`) on the JS bundle; `/assets/*` has
   `Cache-Control: public, max-age=31536000, immutable`; `index.html` has `no-cache`.
-- [ ] **OG image is live:** `https://karimashippingenterprisesinc.com/brand/og-image.jpg` returns 200 (`image/jpeg`). Paste the home
+- [ ] **OG image is live:** `https://nexexpresslogistics.com/brand/og-image.jpg` returns 200 (`image/jpeg`). Paste the home
   link in WhatsApp, then run it through the Facebook Sharing Debugger and LinkedIn Post Inspector ("Scrape again").
 - [ ] View source of the live HTML and JS bundle: only NEX Express Logistics names, domain and email appear.
 - [ ] Lighthouse mobile on Home meets the MOTION_3D_SPEC §2 targets.
@@ -152,7 +152,7 @@ confirming, remove this endpoint.**
   photos and proofs live in the folder, so one without the other is not a full backup. Copy the database while the app is
   idle, or, where the `sqlite3` tool is installed, use `sqlite3 nexexpresslogistics.db ".backup nexexpresslogistics-backup.db"`. Test a restore once.
 - **Updates:** push to `main` → Hostinger redeploys. Use a `staging` branch for bigger changes.
-- **Monitoring:** a free uptime monitor on `https://karimashippingenterprisesinc.com/api/health` (5-minute interval) with email
+- **Monitoring:** a free uptime monitor on `https://nexexpresslogistics.com/api/health` (5-minute interval) with email
   alerts to info@nexexpresslogistics.com.
 - **Security:** rotate `ADMIN_PASSWORD_HASH` and `SESSION_SECRET` if anyone leaves; keep dependencies updated
   (`npm audit` monthly). Remove `/api/diag/storage` once persistence is confirmed.

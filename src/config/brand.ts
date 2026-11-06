@@ -10,7 +10,7 @@ export const LEGAL_NAME = 'NEX Express Logistics';
 export const TAGLINE = 'NEX EL';
 
 export const EMAIL = 'info@nexexpresslogistics.com';
-export const DOMAIN = 'karimashippingenterprisesinc.com';
+export const DOMAIN = 'nexexpresslogistics.com';
 export const SITE_URL = `https://${DOMAIN}`;
 
 // Logo files in Public/brand (BRAND_GUIDE §6). Full colour on light surfaces, white on Ink.
